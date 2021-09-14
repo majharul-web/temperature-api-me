@@ -1,7 +1,21 @@
+// search for enter button press
+
+const searchBtn = document.getElementById('search');
+const searchInput = document.getElementById('searchInput');
+
+searchInput.addEventListener('keypress', function (event) {
+  event.preventDefault();
+
+  if (event.key == 'Enter') {
+    searchBtn.click();
+  }
+});
+
+// api key
 const API_KEY = `d5e5517caaffb7ac6756e17c815769d7`;
 
+// load function
 const loadData = () => {
-  const searchInput = document.getElementById('searchInput');
   const searchText = searchInput.value;
   searchInput.value = '';
 
@@ -13,10 +27,12 @@ const loadData = () => {
     .then((data) => displayData(data));
 };
 
+// set inner text function
 const setInnerText = (id, text) => {
   document.getElementById(id).innerText = text;
 };
 
+// display ui
 const displayData = (data) => {
   setInnerText('city', data.name);
   setInnerText('temp', data.main.temp);
